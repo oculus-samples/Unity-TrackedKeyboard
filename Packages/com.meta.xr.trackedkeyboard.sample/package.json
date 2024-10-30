@@ -1,0 +1,18 @@
+{
+  "name": "com.meta.trackedkeyboard.sample",
+  "version": "1.0.0",
+  "displayName": "Meta XR Tracked Keyboard Sample",
+  "description": "A sample showcasing the tracked keyboard feature with dependencies on Meta XR SDKs.",
+  "unity": "2021.3",
+  "dependencies": {
+    "com.meta.xr.mrutilitykit": "72.0.0-mainline.24",
+    "com.meta.xr.sdk.interaction.ovr": "72.0.0-mainline.18"
+  },
+  "samples": [
+    {
+      "displayName": "Tracked Keyboard",
+      "description": "A scene demonstrating the tracked keyboard feature.",
+      "path": "Samples/TrackedKeyboard"
+    }
+  ]
+}
