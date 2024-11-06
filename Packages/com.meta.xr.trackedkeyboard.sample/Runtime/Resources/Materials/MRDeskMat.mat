@@ -90,6 +90,6 @@ Material:
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _ColorDark: {r: 0.06274506, g: 0.066666625, b: 0.07058818, a: 1}
-    - _ColorLight: {r: 0.509434, g: 0.15619439, b: 0.18691087, a: 1}
+    - _ColorLight: {r: 0.18879783, g: 0.38280463, b: 0.46540874, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
   m_BuildTextureStacks: []
