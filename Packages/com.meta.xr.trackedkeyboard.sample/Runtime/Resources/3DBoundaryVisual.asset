@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b74a91d1a7e64d346bb29968b524892a, type: 3}
   m_Name: 3DBoundaryVisual
   m_EditorClassIdentifier: 
-  _roundedAreaPrefab: {fileID: 3252176749909764440, guid: 84f3290988900c84285fba5c6c463250, type: 3}
-  _tintColor: {r: 1, g: 1, b: 1, a: 1}
+  _areaPrefab: {fileID: 4233676264523816008, guid: dcec2a8b73f91ba4ea37c33ea3f35831, type: 3}
+  _tintColor: {r: 0.14509805, g: 0.6901961, b: 0.8666667, a: 1}

@@ -4683,7 +4683,7 @@ MonoBehaviour:
   - {fileID: 612123915}
   - {fileID: 1587733284}
   _boundaryVisualImplementation: {fileID: 11400000, guid: 0d63d0e2d367c854d8801426d512ee71, type: 2}
-  _passiveVisualToggle: {fileID: 0}
+  _passiveVisualToggle: {fileID: 1486050884}
   _deskTransform: {fileID: 1587733285}
 --- !u!1 &1339424717
 GameObject:
@@ -5507,6 +5507,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 8075725011072244730, guid: c1fa15e93b3d0324ebb8093dc8db35b9, type: 3}
   m_PrefabInstance: {fileID: 1486050880}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1486050884 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3349346243019873864, guid: c1fa15e93b3d0324ebb8093dc8db35b9, type: 3}
+  m_PrefabInstance: {fileID: 1486050880}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9085046f02f69544eb97fd06b6048fe2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1505478140
 GameObject:
   m_ObjectHideFlags: 0

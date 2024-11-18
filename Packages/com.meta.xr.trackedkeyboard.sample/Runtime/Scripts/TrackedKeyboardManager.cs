@@ -50,7 +50,7 @@ namespace Meta.XR.TrackedKeyboardSample
         private Bounded3DVisualizer _boundaryVisualizer;
         private TouchScreenKeyboard _overlayKeyboard;
         private bool _isMRMode = false;
-        private float _deskHeightOffset = 0.006f;
+        private float _deskHeightOffset = 0.01f;
 
         public MRUKTrackable Trackable { get; private set; }
 

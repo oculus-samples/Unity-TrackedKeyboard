@@ -8,20 +8,19 @@ namespace Meta.XR.TrackedKeyboardSample
     [CreateAssetMenu(fileName = "Area3DVisual", menuName = "Meta/BoundaryVisual", order = 2)]
     public class Area3DBoundaryVisual : BoundaryVisual
     {
-        [SerializeField] private GameObject _roundedAreaPrefab;
+        [SerializeField] private GameObject _areaPrefab;
         [SerializeField] private Color _tintColor = Color.white;
 
         private GameObject _visualInstance;
         private Vector3 _originalLocalScale;
         private Material _material;
-        private float _paddingFactorZ = 1.15f;
 
         public override void Initialize(Bounded3DVisualizer visualizer, OVRPassthroughLayer passthroughLayer,
             MRUKTrackable trackable)
         {
-            if (_roundedAreaPrefab == null)
+            if (_areaPrefab == null)
             {
-                Debug.LogError("Rounded area prefab not assigned!");
+                Debug.LogError("Area prefab not assigned!");
                 return;
             }
 
@@ -50,21 +49,12 @@ namespace Meta.XR.TrackedKeyboardSample
         {
             var bounds = trackable.VolumeBounds.Value;
 
-            _visualInstance = Instantiate(_roundedAreaPrefab, parent);
+            _visualInstance = Instantiate(_areaPrefab, parent);
             _visualInstance.name = "BoundaryVisualInstance";
-            _originalLocalScale = _roundedAreaPrefab.transform.localScale;
 
-            Mesh mesh = _visualInstance.GetComponent<MeshFilter>().mesh;
-            Bounds originalBounds = mesh.bounds;
-
-            float scaleX = bounds.size.x / (originalBounds.size.x * _originalLocalScale.x);
-            float scaleZ = bounds.size.y / (originalBounds.size.z * _originalLocalScale.z);
-
-            _visualInstance.transform.localScale = new Vector3(_originalLocalScale.x * scaleX,
-                _originalLocalScale.y, _originalLocalScale.z * scaleZ * _paddingFactorZ);
-
+            _visualInstance.transform.localScale = bounds.size;
             _visualInstance.transform.localPosition = Vector3.zero;
-            _visualInstance.transform.localRotation = _roundedAreaPrefab.transform.rotation;
+            _visualInstance.transform.localRotation = _areaPrefab.transform.rotation;
 
             var renderer = _visualInstance.GetComponent<MeshRenderer>();
             if (renderer != null)
