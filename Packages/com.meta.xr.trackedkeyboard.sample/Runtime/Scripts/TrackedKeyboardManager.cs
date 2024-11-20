@@ -50,7 +50,7 @@ namespace Meta.XR.TrackedKeyboardSample
         private Bounded3DVisualizer _boundaryVisualizer;
         private TouchScreenKeyboard _overlayKeyboard;
         private bool _isMRMode = false;
-        private float _deskHeightOffset = 0.01f;
+        private float _deskHeightOffset = 0.015f;
 
         public MRUKTrackable Trackable { get; private set; }
 
@@ -209,7 +209,7 @@ namespace Meta.XR.TrackedKeyboardSample
                 _passthroughUnderlay.gameObject.SetActive(_isMRMode);
 
             if (_boundaryVisualizer != null)
-                _boundaryVisualizer.gameObject.SetActive(!_isMRMode);
+                _boundaryVisualizer.SetUserEnabled(!_isMRMode);
 
             if (Camera.main != null)
                 Camera.main.clearFlags = _isMRMode ? CameraClearFlags.SolidColor : CameraClearFlags.Skybox;
