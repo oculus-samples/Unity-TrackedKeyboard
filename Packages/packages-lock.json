@@ -5,48 +5,48 @@
       "depth": 0,
       "source": "embedded",
       "dependencies": {
-        "com.meta.xr.mrutilitykit": "72.0.0-mainline.24",
-        "com.meta.xr.sdk.interaction.ovr": "72.0.0-mainline.18"
+        "com.meta.xr.mrutilitykit": "71.0.0",
+        "com.meta.xr.sdk.interaction.ovr": "71.0.0"
       }
     },
     "com.meta.xr.mrutilitykit": {
-      "version": "72.0.0-mainline.24",
+      "version": "71.0.0",
       "depth": 1,
       "source": "registry",
       "dependencies": {
+        "com.meta.xr.sdk.core": "71.0.0",
+        "com.unity.textmeshpro": "3.0.6",
         "com.unity.ai.navigation": "1.1.4",
-        "com.unity.nuget.newtonsoft-json": "3.0.2",
-        "com.meta.xr.sdk.core": "72.0.0-mainline.24",
-        "com.unity.textmeshpro": "3.0.6"
+        "com.unity.nuget.newtonsoft-json": "3.0.2"
       },
-      "url": "https://npm.thefacebook.com"
+      "url": "https://packages.unity.com"
     },
     "com.meta.xr.sdk.core": {
-      "version": "72.0.0-mainline.24",
+      "version": "71.0.0",
       "depth": 2,
       "source": "registry",
       "dependencies": {},
-      "url": "https://npm.thefacebook.com"
+      "url": "https://packages.unity.com"
     },
     "com.meta.xr.sdk.interaction": {
-      "version": "72.0.0-mainline.18",
+      "version": "71.0.0",
       "depth": 2,
       "source": "registry",
       "dependencies": {
-        "com.unity.textmeshpro": "3.0.6",
-        "com.unity.ugui": "1.0.0"
+        "com.unity.ugui": "1.0.0",
+        "com.unity.textmeshpro": "3.0.6"
       },
-      "url": "https://npm.thefacebook.com"
+      "url": "https://packages.unity.com"
     },
     "com.meta.xr.sdk.interaction.ovr": {
-      "version": "72.0.0-mainline.18",
+      "version": "71.0.0",
       "depth": 1,
       "source": "registry",
       "dependencies": {
-        "com.meta.xr.sdk.interaction": "72.0.0-mainline.18",
-        "com.meta.xr.sdk.core": "71.0.0-mainline.41"
+        "com.meta.xr.sdk.core": "71.0.0",
+        "com.meta.xr.sdk.interaction": "71.0.0"
       },
-      "url": "https://npm.thefacebook.com"
+      "url": "https://packages.unity.com"
     },
     "com.unity.ai.navigation": {
       "version": "1.1.5",

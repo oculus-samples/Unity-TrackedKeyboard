@@ -26,20 +26,11 @@ MonoBehaviour:
     m_IsDefault: 1
     m_Capabilities: 7
     m_ConfigSource: 0
-  - m_Id: scoped:project:OSIG package
-    m_Name: OSIG package
-    m_Url: https://npm.thefacebook.com
-    m_Scopes:
-    - com.oculus
-    - com.meta
-    m_IsDefault: 0
-    m_Capabilities: 0
-    m_ConfigSource: 4
-  m_UserSelectedRegistryName: OSIG package
+  m_UserSelectedRegistryName: 
   m_UserAddingNewScopedRegistry: 0
   m_RegistryInfoDraft:
     m_Modified: 0
     m_ErrorMessage: 
-    m_UserModificationsInstanceId: -836
+    m_UserModificationsInstanceId: -834
     m_OriginalInstanceId: -838
   m_LoadAssets: 0

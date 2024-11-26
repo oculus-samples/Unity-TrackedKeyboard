@@ -5,8 +5,8 @@
   "description": "A sample showcasing the tracked keyboard feature with dependencies on Meta XR SDKs.",
   "unity": "2021.3",
   "dependencies": {
-    "com.meta.xr.mrutilitykit": "72.0.0-mainline.24",
-    "com.meta.xr.sdk.interaction.ovr": "72.0.0-mainline.18"
+    "com.meta.xr.mrutilitykit": "71.0.0",
+    "com.meta.xr.sdk.interaction.ovr": "71.0.0"
   },
   "samples": [
     {
