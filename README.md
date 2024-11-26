@@ -3,9 +3,7 @@
 This sample showcases the tracked keyboard feature, providing a comprehensive panel for text input. In addition, the panel offers 2D and 3D visualization options for the keyboard. It also includes toggles for desk and passthrough modes, as well as tracking status. With these features, this sample provides a solid foundation for building mixed reality applications with tracked keyboards.
 
 ## Licenses
-The **Oculus Integration** package is released under the [Oculus SDK License Agreement](https://developer.oculus.com/licenses/oculussdk).
-The MIT licence applies to the files and assets in the **Assets/** folder.
-Otherwise, if an individual file does not indicate which license it is subject to, then the Oculus License applies.
+The [MIT LICENSE](./LICENSE.txt) applies to the majority of the project, however files from [Text Mesh Pro](https://unity.com/legal/licenses/unity-companion-license) are licensed under their respective licensing terms.
 
 ## Prerequisites
 * **Unity 2022.3+ LTS**.
