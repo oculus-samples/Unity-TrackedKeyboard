@@ -129,7 +129,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  _maxDistance: 0.4
+  _maxDistance: 0.25
 --- !u!114 &-482318814045960506
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -148,8 +148,8 @@ MonoBehaviour:
   _boundaryVisual: {fileID: 0}
   _boxTransform: {fileID: 6161234201297617383}
   _lineRenderer: {fileID: 5995194297237024610}
-  _colliderScaleX: 1.5
-  _colliderScaleZ: 3
+  _colliderScaleX: 1.2
+  _colliderScaleZ: 3.5
 --- !u!1 &7526053214293255536
 GameObject:
   m_ObjectHideFlags: 0

@@ -49,6 +49,7 @@ namespace Meta.XR.TrackedKeyboardSample
         private RayInteractor _rightRayInteractor;
         private Bounded3DVisualizer _boundaryVisualizer;
         private TouchScreenKeyboard _overlayKeyboard;
+        private BoundaryVisualizationMode _currentVisualizationMode;
         private bool _isMRMode = false;
         private float _deskHeightOffset = 0.015f;
 
@@ -57,6 +58,7 @@ namespace Meta.XR.TrackedKeyboardSample
         private void Awake()
         {
             InitializeHands();
+            _currentVisualizationMode = BoundaryVisualizationMode.TwoD;
         }
 
         /// <summary>
@@ -111,7 +113,7 @@ namespace Meta.XR.TrackedKeyboardSample
                 // Initialize with the selected BoundaryVisual implementation
                 _boundaryVisualizer.Initialize(_passthroughOverlay, trackable, _boundaryVisualImplementation);
                 ToggleBoundaryVisual(_passiveVisualToggle.isOn);
-                _boundaryVisualizer.SetVisualizationMode(BoundaryVisualizationMode.TwoD);
+                _boundaryVisualizer.SetVisualizationMode(_currentVisualizationMode);
             }
             else
             {
@@ -191,8 +193,11 @@ namespace Meta.XR.TrackedKeyboardSample
                 return;
             }
 
-            _boundaryVisualizer.SetVisualizationMode(_boundaryVisualizer.CurrentMode == BoundaryVisualizationMode.TwoD ?
-                BoundaryVisualizationMode.ThreeD : BoundaryVisualizationMode.TwoD);
+            _currentVisualizationMode = _boundaryVisualizer.CurrentMode == BoundaryVisualizationMode.TwoD
+                ? BoundaryVisualizationMode.ThreeD
+                : BoundaryVisualizationMode.TwoD;
+
+            _boundaryVisualizer.SetVisualizationMode(_currentVisualizationMode);
         }
 
         /// <summary>
