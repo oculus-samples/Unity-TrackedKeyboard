@@ -10,7 +10,7 @@ The [MIT LICENSE](./LICENSE.txt) applies to the majority of the project, however
 
 ## Prerequisites
 * **Unity 2022.3+ LTS**.
-* **Meta Quest OS v71 or above.**
+* **Meta Quest OS v72 or above.**
 * **Pair bluetooth keyboard** : On your Quest device, go to **Settings** > **Devices** > **Keyboard**. Enable keyboard tracking and pair your keyboard.
 
 ## Getting started
@@ -34,8 +34,8 @@ The [MIT LICENSE](./LICENSE.txt) applies to the majority of the project, however
 
 ### Prerequisites
 
-* Interaction SDK v71 or above installed in your project.
-* MR Utility Kit v71 or above installed in your project.
+* Interaction SDK v72 or above installed in your project.
+* MR Utility Kit v72 or above installed in your project.
 * Text Mesh Pro Essentials installed in your project.
 
 ### Integration Steps
