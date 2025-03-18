@@ -16,18 +16,18 @@ namespace Meta.XR.TrackedKeyboardSample
         /// <param name="visualizer">The Bounded3DVisualizer instance.</param>
         /// <param name="passthroughLayer">The passthrough layer.</param>
         /// <param name="trackable">The associated MRUKTrackable.</param>
-        public abstract void Initialize(Bounded3DVisualizer visualizer, OVRPassthroughLayer passthroughLayer, MRUKTrackable trackable);
+        public abstract void Initialize(Bounded2DVisualizer visualizer, OVRPassthroughLayer passthroughLayer, MRUKTrackable trackable);
 
         /// <summary>
         /// Updates the visualization based on the trackable's state.
         /// </summary>
         /// <param name="visualizer">The Bounded3DVisualizer instance.</param>
-        public abstract void UpdateVisual(Bounded3DVisualizer visualizer);
+        public abstract void UpdateVisual(Bounded2DVisualizer visualizer);
 
         /// <summary>
         /// Updates the visualization's visibility.
         /// </summary>
         /// <param name="enable">The visibility state boolean.</param>
-        public abstract void UpdateVisibility(Bounded3DVisualizer visualizer, bool enable);
+        public abstract void UpdateVisibility(Bounded2DVisualizer visualizer, bool enable);
     }
 }

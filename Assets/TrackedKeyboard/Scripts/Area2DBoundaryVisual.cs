@@ -15,7 +15,7 @@ namespace Meta.XR.TrackedKeyboardSample
         private GameObject _visualInstance;
         private Material _material;
 
-        public override void Initialize(Bounded3DVisualizer visualizer, OVRPassthroughLayer passthroughLayer, MRUKTrackable trackable)
+        public override void Initialize(Bounded2DVisualizer visualizer, OVRPassthroughLayer passthroughLayer, MRUKTrackable trackable)
         {
             if (_quadPrefab == null)
             {
@@ -32,7 +32,7 @@ namespace Meta.XR.TrackedKeyboardSample
                       $"Scale: {_visualInstance.transform.localScale}");
         }
 
-        public override void UpdateVisual(Bounded3DVisualizer visualizer)
+        public override void UpdateVisual(Bounded2DVisualizer visualizer)
         {
             if (_material != null)
             {
@@ -40,7 +40,7 @@ namespace Meta.XR.TrackedKeyboardSample
             }
         }
 
-        public override void UpdateVisibility(Bounded3DVisualizer visualizer, bool enable)
+        public override void UpdateVisibility(Bounded2DVisualizer visualizer, bool enable)
         {
             if (_visualInstance != null)
             {

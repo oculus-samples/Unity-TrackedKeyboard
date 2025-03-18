@@ -9,8 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b74a91d1a7e64d346bb29968b524892a, type: 3}
-  m_Name: 3DBoundaryVisual
+  m_Script: {fileID: 11500000, guid: 20553fac56ec59645857c0732b787431, type: 3}
+  m_Name: OVRBuildConfig
   m_EditorClassIdentifier: 
-  _areaPrefab: {fileID: 4233676264523816008, guid: dcec2a8b73f91ba4ea37c33ea3f35831, type: 3}
-  _tintColor: {r: 0.14509805, g: 0.6901961, b: 0.8666667, a: 1}

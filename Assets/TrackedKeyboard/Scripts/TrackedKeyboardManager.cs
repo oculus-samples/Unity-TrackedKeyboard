@@ -1,5 +1,6 @@
 // (c) Meta Platforms, Inc. and affiliates. Confidential and proprietary.
 
+using System.Collections;
 using UnityEngine;
 using Meta.XR.MRUtilityKit;
 using Oculus.Interaction;
@@ -47,18 +48,17 @@ namespace Meta.XR.TrackedKeyboardSample
         private MaterialPropertyBlockEditor _rightHandMaterialEditor;
         private RayInteractor _leftRayInteractor;
         private RayInteractor _rightRayInteractor;
-        private Bounded3DVisualizer _boundaryVisualizer;
+        private Bounded2DVisualizer _boundaryVisualizer;
         private TouchScreenKeyboard _overlayKeyboard;
-        private BoundaryVisualizationMode _currentVisualizationMode;
         private bool _isMRMode = false;
         private float _deskHeightOffset = 0.015f;
+        private bool _awaitingDialogueResponse = false;
 
         public MRUKTrackable Trackable { get; private set; }
 
         private void Awake()
         {
             InitializeHands();
-            _currentVisualizationMode = BoundaryVisualizationMode.TwoD;
         }
 
         /// <summary>
@@ -107,13 +107,12 @@ namespace Meta.XR.TrackedKeyboardSample
             var newGameObject = Instantiate(_keyboardPrefab, trackable.transform);
             Trackable = trackable;
 
-            _boundaryVisualizer = newGameObject.GetComponentInChildren<Bounded3DVisualizer>();
+            _boundaryVisualizer = newGameObject.GetComponentInChildren<Bounded2DVisualizer>();
             if (_boundaryVisualizer != null)
             {
                 // Initialize with the selected BoundaryVisual implementation
                 _boundaryVisualizer.Initialize(_passthroughOverlay, trackable, _boundaryVisualImplementation);
                 ToggleBoundaryVisual(_passiveVisualToggle.isOn);
-                _boundaryVisualizer.SetVisualizationMode(_currentVisualizationMode);
             }
             else
             {
@@ -184,23 +183,6 @@ namespace Meta.XR.TrackedKeyboardSample
         }
 
         /// <summary>
-        /// Toggles the visualization mode between 2D and 3D.
-        /// </summary>
-        public void ToggleVisualizationMode()
-        {
-            if (_boundaryVisualizer == null)
-            {
-                return;
-            }
-
-            _currentVisualizationMode = _boundaryVisualizer.CurrentMode == BoundaryVisualizationMode.TwoD
-                ? BoundaryVisualizationMode.ThreeD
-                : BoundaryVisualizationMode.TwoD;
-
-            _boundaryVisualizer.SetVisualizationMode(_currentVisualizationMode);
-        }
-
-        /// <summary>
         /// Toggles Mixed Reality mode.
         /// </summary>
         public void ToggleMrMode()
@@ -230,7 +212,57 @@ namespace Meta.XR.TrackedKeyboardSample
         /// </summary>
         public void LaunchLocalKeyboardSelectionDialog()
         {
-            LaunchOverlayIntent("systemux://dialog/enable-tracked-keyboard");
+            LaunchOverlayIntent("systemux://dialog/enable-tracked-keyboard?default_action=enable");
+            _awaitingDialogueResponse = true;
+        }
+
+        /// <summary>
+        /// Checks the keyboard presence once the external dialogue is closed and the app regains focus.
+        /// </summary>
+        /// <param name="hasFocus"></param>
+        private void OnApplicationFocus(bool hasFocus)
+        {
+            if (_awaitingDialogueResponse && hasFocus)
+            {
+                StartCoroutine(CheckKeyboardPresence());
+                _awaitingDialogueResponse = false;
+            }
+        }
+
+        private IEnumerator CheckKeyboardPresence()
+        {
+            yield return new WaitForSeconds(0.5f);
+
+            if (!HasActiveKeyboard())
+            {
+                StartCoroutine(RefreshMRUKCoroutine());
+            }
+        }
+
+        private bool HasActiveKeyboard()
+        {
+            if (MRUK.Instance && MRUK.Instance.IsInitialized)
+            {
+                if (Trackable && Trackable.TrackableType == OVRAnchor.TrackableType.Keyboard)
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        /// <summary>
+        /// Forces a refresh of the MRUK tracking system to detect externally-enabled keyboard tracking, after app launch.
+        /// </summary>
+        private IEnumerator RefreshMRUKCoroutine()
+        {
+            if (MRUK.Instance)
+            {
+                MRUK.Instance.enabled = false;
+                yield return null;
+                MRUK.Instance.enabled = true;
+            }
         }
 
         /// <summary>
