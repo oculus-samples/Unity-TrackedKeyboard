@@ -4,27 +4,17 @@ using System;
 using System.Collections.Generic;
 using Meta.XR.MRUtilityKit;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Meta.XR.TrackedKeyboardSample
 {
-    public enum BoundaryVisualizationMode
-    {
-        TwoD,
-        ThreeD
-    }
     /// <summary>
     /// Visualizes the bounded 3D area for the tracked keyboard.
     /// </summary>
-    public class Bounded3DVisualizer : MonoBehaviour
+    public class Bounded2DVisualizer : MonoBehaviour
     {
-        [SerializeField]
-        private BoundaryVisualizationMode _visualizationMode = BoundaryVisualizationMode.TwoD;
+
         [SerializeField]
         private Area2DBoundaryVisual _2DVisual;
-        [SerializeField]
-        private Area3DBoundaryVisual _3DVisual;
-
         [SerializeField, Tooltip("Boundary visual implementation.")]
         private BoundaryVisual _boundaryVisual;
         [SerializeField, Tooltip("Transform to apply the keyboard's position and scale.")]
@@ -35,8 +25,15 @@ namespace Meta.XR.TrackedKeyboardSample
         private float _colliderScaleX = 1.2f;
         [SerializeField, Range(2f, 4f), Tooltip("Scaling factor for the trackable box colliders Z axis. This defines the hand detection range and does not need to be changed in most cases.")]
         private float _colliderScaleZ = 3f;
+
+        [SerializeField, Range(1f, 1.3f), Tooltip("Scaling factor for the passthrough cutout width (X axis)")]
+        private float _passthroughScaleX = 1.05f;
+        [SerializeField, Range(1f, 1.3f), Tooltip("Scaling factor for the passthrough cutout height (Y axis)")]
+        private float _passthroughScaleY = 1.05f;
+        [SerializeField, Range(1f, 1.2f), Tooltip("Scaling factor for the passthrough cutout depth (Z axis)")]
+        private float _passthroughScaleZ = 1.05f;
+
         public LineRenderer LineRenderer => _lineRenderer;
-        public BoundaryVisualizationMode CurrentMode => _visualizationMode;
         public BoxCollider BoxCollider => _boxCollider;
 
         private MRUKTrackable _trackable;
@@ -107,13 +104,17 @@ namespace Meta.XR.TrackedKeyboardSample
             _boxCollider.size = new Vector3(box.size.x * _colliderScaleX, box.size.y, box.size.z * _colliderScaleZ);
 
             _2DVisual?.Initialize(this, _passthroughLayer, _trackable);
-            _2DVisual?.UpdateVisibility(this, _visualizationMode == BoundaryVisualizationMode.TwoD && !_isHoverActive && _isBoundaryVisualEnabled);
-            _3DVisual?.Initialize(this, _passthroughLayer, _trackable);
-            _3DVisual?.UpdateVisibility(this, _visualizationMode == BoundaryVisualizationMode.ThreeD && !_isHoverActive && _isBoundaryVisualEnabled);
+            _2DVisual?.UpdateVisibility(this, !_isHoverActive && _isBoundaryVisualEnabled);
 
             if (_boxTransform != null)
             {
-                _boxTransform.localScale = box.size;
+                Vector3 passthroughScale = new Vector3(
+                    box.size.x * (_passthroughScaleX),
+                    box.size.y * (_passthroughScaleY),
+                    box.size.z * (_passthroughScaleZ)
+                );
+
+                _boxTransform.localScale = passthroughScale;
 
                 var meshFilter = _boxTransform.GetComponentInChildren<MeshFilter>();
                 if (meshFilter)
@@ -129,24 +130,6 @@ namespace Meta.XR.TrackedKeyboardSample
             {
                 Debug.LogWarning("BoxTransform is not set; ignoring passthrough layer.");
             }
-        }
-
-        /// <summary>
-        /// Sets the current visualization mode for the boundary visual.
-        /// </summary>
-        /// <param name="mode">The mode to set.</param>
-        public void SetVisualizationMode(BoundaryVisualizationMode mode)
-        {
-            if (_visualizationMode == mode)
-            {
-                return;
-            }
-
-            _visualizationMode = mode;
-            bool shouldShow = !_isHoverActive && _isBoundaryVisualEnabled;
-
-            _2DVisual?.UpdateVisibility(this, mode == BoundaryVisualizationMode.TwoD && shouldShow);
-            _3DVisual?.UpdateVisibility(this, mode == BoundaryVisualizationMode.ThreeD && shouldShow);
         }
 
         /// <summary>
@@ -174,28 +157,13 @@ namespace Meta.XR.TrackedKeyboardSample
             }
         }
 
-        private BoundaryVisual GetActiveVisual()
-        {
-            return _visualizationMode == BoundaryVisualizationMode.TwoD ? _2DVisual : _3DVisual;
-        }
-
         /// <summary>
         /// Show the boundary visual if button is enabled, and user is not hovering.
         /// </summary>
         private void UpdateVisibility()
         {
             bool shouldShow = _isBoundaryVisualEnabled && !_isHoverActive;
-
-            if (_visualizationMode == BoundaryVisualizationMode.TwoD)
-            {
-                _2DVisual?.UpdateVisibility(this, shouldShow);
-                _3DVisual?.UpdateVisibility(this, false);
-            }
-            else
-            {
-                _3DVisual?.UpdateVisibility(this, shouldShow);
-                _2DVisual?.UpdateVisibility(this, false);
-            }
+            _2DVisual?.UpdateVisibility(this, shouldShow);
         }
     }
 }

@@ -4,14 +4,11 @@ Shader "TrackedKeyboard/Keyboard2DOverlay"
 {
     Properties
     {
-         [MainTexture] _MainTex ("Icon", 2D) = "black" {}
-         _IconColor ("Icon Color", Color) = (1, 1, 1, 1)
-         _IconParams ("Icon Size (x) and Position (y,z,w)", Vector) = (1,1,1,1)
          _TintColor ("Color", Color) = (1, 1, 1, 1)
          _FrameColor ("Frame Color", Color) = (1, 1, 1, 1)
-         _OutlineRadius ("Radius", Range(0, 1)) = 1
+         _OutlineRadius ("Radius", Range(0, 1)) = 0.1
          _OutlineSize ("Stroke", Range(-0.1, 10)) = 0.05
-         _Alpha ("Alpha", Range(0,1)) = 1
+         _Alpha ("Alpha", Range(0,1)) = 0.8
     }
 
     SubShader
@@ -19,6 +16,7 @@ Shader "TrackedKeyboard/Keyboard2DOverlay"
         Tags
         { "RenderType" = "Transparent" "Queue" = "Transparent" "IgnoreProjector" = "True" }
 
+        Cull Off
         Blend SrcAlpha OneMinusSrcAlpha, One One
         ZWrite Off
 
@@ -47,10 +45,6 @@ Shader "TrackedKeyboard/Keyboard2DOverlay"
                 UNITY_VERTEX_OUTPUT_STEREO
             };
 
-            sampler2D _MainTex;
-            float4 _MainTex_ST;
-            float4 _IconColor;
-            float4 _IconParams;
             float4 _TintColor;
             float4 _FrameColor;
             float  _OutlineSize;
@@ -93,14 +87,10 @@ Shader "TrackedKeyboard/Keyboard2DOverlay"
                 float body = aaStep(1.0 - smoothstep(0, 0.001, box));
                 float frame = 1.0 - smoothstep(0, 0.001, abs(box + _OutlineSize * 0.01) - _OutlineSize * 0.01);
                 float4 col = lerp(_TintColor, _FrameColor, aaStep(frame));
-
-                float2 iconUV = float2(
-                    (i.uv.x - (i.worldScale.x * 0.5 - _IconParams.y)) * (1.0 / _IconParams.x),
-                    (i.uv.y + (i.worldScale.y * 0.5 - _IconParams.z)) * (1.0 / _IconParams.x)
-                );
-
-                fixed4 icon = tex2D(_MainTex, iconUV);
-                col = lerp(col, _IconColor, icon.a);
+                // feather fade near edges
+                float feather = 0.02f;
+                float alphaFade = smoothstep(feather,-feather, box);
+                col.a *= alphaFade;
 
                 return float4(col.rgb, saturate(col.a * body * _Alpha));
             }

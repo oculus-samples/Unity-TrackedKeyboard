@@ -12,16 +12,18 @@
     <meta-data android:name="unityplayer.SkipPermissionsDialog" android:value="false" />
     <meta-data android:name="com.oculus.handtracking.frequency" android:value="LOW" />
     <meta-data android:name="com.oculus.ossplash.background" android:value="passthrough-contextual" />
-    <meta-data android:name="com.oculus.telemetry.project_guid" android:value="640ccb96-c769-4b5c-b5f7-d63c546ca360" />
+    <meta-data android:name="com.oculus.telemetry.project_guid" android:value="c084c4a3-1b7d-4aa2-8427-e9866456bf58" />
     <meta-data android:name="com.oculus.supportedDevices" android:value="quest2|questpro|quest3|quest3s" />
   </application>
   <uses-feature android:name="android.hardware.vr.headtracking" android:version="1" android:required="true" />
   <uses-feature android:name="oculus.software.handtracking" android:required="false" />
   <uses-permission android:name="com.oculus.permission.HAND_TRACKING" />
-<uses-feature android:name="oculus.software.trackedkeyboard" android:required="false" />
-<uses-permission android:name="com.oculus.permission.TRACKED_KEYBOARD" />
+  <uses-feature android:name="oculus.software.trackedkeyboard" android:required="false" />
+  <uses-permission android:name="com.oculus.permission.TRACKED_KEYBOARD" />
   <uses-permission android:name="com.oculus.permission.USE_ANCHOR_API" />
   <uses-feature android:name="com.oculus.feature.PASSTHROUGH" android:required="false" />
   <uses-permission android:name="com.oculus.permission.USE_SCENE" />
-  <uses-feature android:name="com.oculus.experimental.enabled" android:required="true" />
+  <uses-feature android:name="oculus.software.overlay_keyboard" android:required="false" />
+  <uses-feature android:name="com.oculus.feature.RENDER_MODEL" />
+  <uses-permission android:name="com.oculus.permission.RENDER_MODEL" />
 </manifest>
