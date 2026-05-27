@@ -73,3 +73,21 @@ The [MIT LICENSE](./LICENSE.txt) applies to the majority of the project, however
 
 * Bad lighting conditions may affect keyboard tracking.
 * Desk height is estimated based on the tracked keyboard's position and may not be accurate for all keyboard types.
+
+## Agent-ready development
+
+This sample is configured for AI coding agents.
+
+For the best experience in VS Code or Cursor, install the Meta Horizon extension:
+
+https://marketplace.visualstudio.com/items?itemName=meta.meta-vr-dev
+
+This repository also includes agent instructions and MCP configuration for Meta Quest Agentic Tools:
+
+https://github.com/meta-quest/agentic-tools
+
+Suggested first prompt:
+
+```text
+Read AGENTS.md, detect what type of Meta Quest sample this is, enable the hzdb MCP server if available, and explain how to build, run, and debug this sample on a Quest device.
+```
