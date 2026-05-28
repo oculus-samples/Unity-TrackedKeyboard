@@ -73,3 +73,9 @@ The [MIT LICENSE](./LICENSE.txt) applies to the majority of the project, however
 
 * Bad lighting conditions may affect keyboard tracking.
 * Desk height is estimated based on the tracked keyboard's position and may not be accurate for all keyboard types.
+
+## AI coding agents
+
+This repo is wired up for AI coding agents — `AGENTS.md`, `.vscode/extensions.json`, `.mcp.json`, `.cursor/rules/`, and a few client-specific dotfiles surface the **Meta Horizon** VS Code/Cursor extension, the `hzdb` MCP server, and the Meta Quest skill set automatically.
+
+Full toolchain, including Unity skills and per-client install instructions: [github.com/meta-quest/agentic-tools](https://github.com/meta-quest/agentic-tools).
